@@ -90,7 +90,7 @@ def add_users
   end
 
   # Add Devise masqueradable to users
-  inject_into_file("app/models/user.rb", ":masqueradable, :", after: "devise :")
+  inject_into_file("app/models/user.rb", "masqueradable, :", after: "devise :")
 end
 
 def add_authorization
