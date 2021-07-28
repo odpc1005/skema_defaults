@@ -90,7 +90,7 @@ after_bundle do
   add_users
   remove_app_css
   add_sidekiq
-  add_foreman
+  #add_foreman
   copy_templates
   add_tailwind
 
