@@ -17,7 +17,31 @@ def add_gems
 end
 
 def copy_templates
-  directory "app", force: true
+  #directory "app", force: true
+  directory "lib", force: true
+end
+
+def add_users
+  # Install Devise
+  generate "devise:install"
+
+  # Configure Devise
+  environment "config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }",
+              env: 'development'
+
+  route "root to: 'home#index'"
+
+  # Create Devise User
+  generate :devise, "User", "first_name", "last_name", "admin:boolean"
+
+  # set admin boolean to false by default
+  in_root do
+    migration = Dir.glob("db/migrate/*").max_by{ |f| File.mtime(f) }
+    gsub_file migration, /:admin/, ":admin, default: false"
+  end
+
+  # name_of_person gem
+  append_to_file("app/models/user.rb", "\nhas_person_name\n", after: "class User < ApplicationRecord")
 end
 
 def add_tailwind
