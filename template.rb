@@ -167,9 +167,6 @@ after_bundle do
   add_authorization
   puts "authorization added"
   sleep 10
-  add_webpack
-  puts "webpack added"
-  sleep 10
   add_javascript
   puts "js added"
   sleep 10
