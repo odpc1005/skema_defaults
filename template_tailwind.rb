@@ -5,9 +5,12 @@ Author URI: https://web-crunch.com
 Instructions: $ rails new myapp -d <postgresql, mysql, sqlite3> -m template.rb
 =end
 
-def source_paths
-  [File.expand_path(File.dirname(__FILE__))]
-end
+require "fileutils"
+require "shellwords"
+
+#def source_paths
+  #[File.expand_path(File.dirname(__FILE__))]
+#end
 
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
