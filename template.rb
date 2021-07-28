@@ -90,7 +90,7 @@ def add_users
   end
 
   # Add Devise masqueradable to users
-  inject_into_file("app/models/user.rb", "omniauthable, :masqueradable, :", after: "devise :")
+  inject_into_file("app/models/user.rb", ":masqueradable, :", after: "devise :")
 end
 
 def add_authorization
@@ -158,16 +158,31 @@ add_gems
 
 after_bundle do
   set_application_name
+  puts "application name set"
+  sleep 10
   stop_spring
   add_users
+  puts "users added"
+  sleep 10
   add_authorization
+  puts "authorization added"
+  sleep 10
   add_webpack
+  puts "webpack added"
+  sleep 10
   add_javascript
+  puts "js added"
+  sleep 10
   add_sidekiq
-
+  puts "sidekiq added"
+  sleep 10
   copy_templates
+  puts "templates copied"
+  sleep 10
 
   rails_command "active_storage:install"
+  puts "active storage intalled"
+  sleep 10
 
   # Commit everything to git
   unless ENV["SKIP_GIT"]
