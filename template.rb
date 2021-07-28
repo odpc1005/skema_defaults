@@ -25,6 +25,9 @@ def rails_version
   @rails_version ||= Gem::Version.new(Rails::VERSION::STRING)
 end
 
+def rails_5?
+  Gem::Requirement.new(">= 5.2.0", "< 6.0.0.beta1").satisfied_by? rails_version
+end
 
 def rails_6?
   Gem::Requirement.new(">= 6.0.0.alpha", "< 7").satisfied_by? rails_version
