@@ -15,7 +15,7 @@ require "shellwords"
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("skema-defaults"))
+    source_paths.unshift(tempdir = Dir.mktmpdir("skema_defaults"))
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
@@ -40,7 +40,7 @@ def add_gems
 end
 
 def copy_templates
-  #directory "app", force: true
+  directory "app", force: true
   directory "lib", force: true
 end
 
@@ -114,7 +114,7 @@ after_bundle do
   add_users
   remove_app_css
   add_sidekiq
-  #add_foreman
+  add_foreman
   copy_templates
   add_tailwind
 
