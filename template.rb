@@ -5,7 +5,7 @@ require "shellwords"
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("skema-defaults"))
+    source_paths.unshift(tempdir = Dir.mktmpdir("skema_defaults"))
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
@@ -153,33 +153,34 @@ end
 
 # Main setup
 add_template_repository_to_source_path
+puts source_paths
+sleep 30
+
 
 add_gems
 
 after_bundle do
   set_application_name
-  puts "application name set"
-  sleep 10
   stop_spring
-  add_users
-  puts "users added"
-  sleep 10
-  add_authorization
-  puts "authorization added"
-  sleep 10
-  add_javascript
-  puts "js added"
-  sleep 10
-  add_sidekiq
-  puts "sidekiq added"
-  sleep 10
+  #add_users
+  #puts "users added"
+  #sleep 10
+  #add_authorization
+  #puts "authorization added"
+  #sleep 10
+  #add_javascript
+  #puts "js added"
+  #sleep 10
+  #add_sidekiq
+  #puts "sidekiq added"
+  #sleep 10
   copy_templates
   puts "templates copied"
   sleep 10
 
-  rails_command "active_storage:install"
-  puts "active storage intalled"
-  sleep 10
+  #rails_command "active_storage:install"
+  #puts "active storage intalled"
+  #sleep 10
 
   # Commit everything to git
   unless ENV["SKIP_GIT"]
