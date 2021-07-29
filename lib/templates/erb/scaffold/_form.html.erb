@@ -28,7 +28,7 @@
     <%%= form.select :<%= attribute.column_name %>, options_for_select(<%=attribute.column_name[..-4].classify %>.all.map{|e| [e.short_name,e.id]}), class: "form-control" %>
 <% else -%>
     <%%= form.label :<%= attribute.column_name %> %>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "form-control" %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, class: "border" %>
 <% end -%>
   </div>
 
